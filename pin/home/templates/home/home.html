@@ -20,7 +20,7 @@
                     <h3 class="panel-title">Passwords</h3>
                   </div>
                   <div class="col col-xs-6 text-right">
-                    <button type="button" class="btn btn-sm btn-primary btn-create"><a class="nav-link" href="{% url 'home:create_password' %}">Create New</button>
+                    <button type="button"><a href="{% url 'home:create_password' %}">Create New</button>
                   </div>
                 </div>
               </div>
@@ -35,16 +35,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                        {% for passw in passwords %}
+                         {% for password in passwords %}
                           <tr>
                             <td align="center">
-                             <button type="button" sclass="btn btn-sm btn-primary btn-create"><a class="nav-link" href="{% url 'home:modify_password' %}">Modify</button>
-                             <button type="button" class="btn btn-sm btn-primary btn-create"><a class="nav-link" href="{% url 'home:delete_password' passw.id %}">Delete</button>
+                             <button type="button" ><a href="{% url 'home:modify_password' %}">Modify</button>
+                             <button type="button" ><a href="">Delete</button>
                             </td>
-                            <td class="hidden-xs">$ {{passw.index }}</td>
-                            <td>$ {{passw.website }}</td>
-                            <td>$ {{passw.name }}</td>
-                            <td>$ {{passw.pin }}</td>
+                            <td>{{ password.website }}</td>
+                            <td>{{ password.name }}</td>
+                            <td>{{ password.pin }} </td>
                           </tr>
                         </tbody>
                         {% endfor %}
