@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div>
+
+</div>
+    <div class="container">
+        <div class="col-md-8">
+
+            <h1>Your PASSWORD list</h1>
+            <p>All your password are here.</p>
+
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-6">
+                    <h3 class="panel-title">Passwords</h3>
+                  </div>
+                  <div class="col col-xs-6 text-right">
+                    <button type="button" class="btn btn-sm btn-primary btn-create"><a class="nav-link" href="{% url 'home:create_password' %}">Create New</button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-list">
+                  <thead>
+                    <tr>
+                        <th><em class="fa fa-cog"></em></th>
+                        <th class="hidden-xs">ID</th>
+                        <th>Website</th>
+                        <th>User</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        {% for passw in passwords %}
+                          <tr>
+                            <td align="center">
+                             <button type="button" sclass="btn btn-sm btn-primary btn-create"><a class="nav-link" href="{% url 'home:modify_password' %}">Modify</button>
+                             <button type="button" class="btn btn-sm btn-primary btn-create"><a class="nav-link" href="{% url 'home:delete_password' passw.id %}">Delete</button>
+                            </td>
+                            <td class="hidden-xs">$ {{passw.index }}</td>
+                            <td>$ {{passw.website }}</td>
+                            <td>$ {{passw.name }}</td>
+                            <td>$ {{passw.pin }}</td>
+                          </tr>
+                        </tbody>
+                        {% endfor %}
+                </table>
+
+              </div>
+            </div>
+        </div>
+       </div>
+      </div>
+{% endblock %}
