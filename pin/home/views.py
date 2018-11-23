@@ -3,7 +3,7 @@
 # def home(request):
 #     return HttpResponse('Its works!')
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.shortcuts import render, redirect
 #from django.contrib.auth.models import User
 
@@ -16,15 +16,12 @@ from django.contrib.auth.forms import UserCreationForm
 class HomeView(TemplateView):
     template_name = 'home/home.html'
 
+
     def get(self, request):
         form = HomeForm()
-        posts = Post.objects.all()
-#         users = User.objects.exclude(id=request.user.id)
-#         friend = Friend.objects.get(current_user=request.user)
-#         friends = friend.users.all()
-
+        passwords = Password.objects.all()
         args = {
-            'form': form, 'posts': posts
+            'form': form, 'passwords': passwords
         }
         return render(request, self.template_name, args)
 
@@ -45,19 +42,16 @@ class HomeView(TemplateView):
 
 def passwords(request):
     if request.method == 'POST':
-        form = ModifyPassword()#data=request.POST, user=request.user
+        form = ModifyPassword(request.POST, instance=request.user)
 
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, form.password)
             return redirect(reverse('home:home'))
-        else:
-            return redirect(reverse('home:modify_password'))
     else:
-        form = ModifyPassword() #user=request.user
-
+        form = ModifyPassword(instance=request.user)
         args = {'form': form}
         return render(request, 'home/modify_passwords.html', args)
+
 
 def password_delete(request, password_id=None):
         object = Password.objects.get(id=password_id)
@@ -75,6 +69,7 @@ class CreatePassword(TemplateView):
     def get(self, request):
         form = CreatePinForm()
         passwords = Password.objects.all()
+
 
         args = {
             'form': form, 'password': passwords

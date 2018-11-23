@@ -16,15 +16,14 @@ class HomeForm(forms.ModelForm):
         model = Post
         fields = ('post',)
 
-class ModifyPassword(UserChangeForm):
-    template_name='/something/else'
+class ModifyPassword(forms.ModelForm):
 
     class Meta:
         model = Password
         fields = (
             'website',
             'name',
-            'pin'
+            'pin',
         )
 
 class CreatePinForm(forms.ModelForm):
@@ -35,7 +34,7 @@ class CreatePinForm(forms.ModelForm):
         fields = (
             'website',
             'name',
-            'pin'
+            'pin',
         )
 
 class PasswordCreationForm(UserCreationForm):
