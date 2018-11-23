@@ -52,6 +52,7 @@ def passwords(request):
         args = {'form': form}
         return render(request, 'home/modify_passwords.html', args)
 
+
 def password_delete(request, password_id=None):
         object = Password.objects.get(id=password_id)
         object.delete()
@@ -68,6 +69,7 @@ class CreatePassword(TemplateView):
     def get(self, request):
         form = CreatePinForm()
         passwords = Password.objects.all()
+
 
         args = {
             'form': form, 'password': passwords

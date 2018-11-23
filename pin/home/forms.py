@@ -23,7 +23,7 @@ class ModifyPassword(forms.ModelForm):
         fields = (
             'website',
             'name',
-            'pin'
+            'pin',
         )
 
 class CreatePinForm(forms.ModelForm):
@@ -34,7 +34,7 @@ class CreatePinForm(forms.ModelForm):
         fields = (
             'website',
             'name',
-            'pin'
+            'pin',
         )
 
 class PasswordCreationForm(UserCreationForm):
